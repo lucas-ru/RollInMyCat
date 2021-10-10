@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     
-    public PlayerController player { get; private set; }
+    public PlayerManager player { get; private set; }
 
     public CameraManager camera { get; private set; }
     
@@ -20,8 +20,10 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        player = GetComponent<PlayerController>();
+        player = GetComponent<PlayerManager>();
         camera = GetComponent<CameraManager>();
+        
+        Debug.Log(player.transform.position);
     }
     
     
