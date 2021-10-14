@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -31,22 +32,40 @@ public class GameManager : MonoBehaviour
         camera = GetComponent<CameraManager>();
         uimanager = GetComponent<UIManager>();
         Audio = GetComponent<AudioManager>();
-        
-        
-        
-        Debug.Log(player.transform.position);
+
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            PauseGame();
+        }
     }
 
     public void StartGame()
     {
+        uimanager.MainMenu.gameObject.SetActive(false);
         Playing = true;
         Audio.PlayMainTheme();
+    }
+
+    public void RestartGame()
+    {
+        Playing = true;
+        uimanager.PausePanel.gameObject.SetActive(false);
     }
     
     public void LooseGame()
     {
         Playing = false;
+        Audio.Stop();
         uimanager.LoosePanel.gameObject.SetActive(true);
+    }
+
+    public void EndGame()
+    {
+        Application.Quit();
     }
 
     public void WinGame()
@@ -54,4 +73,12 @@ public class GameManager : MonoBehaviour
         Playing = false;
         uimanager.WinPanel.gameObject.SetActive(true);
     }
+
+    public void PauseGame()
+    {
+        Playing = false;
+        uimanager.PausePanel.gameObject.SetActive(true);
+        player.ball.StopMovement();
+    }
+    
 }
