@@ -6,16 +6,20 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody m_body;
-
+    
     private GameManager m_Game;
-
+    
+    private GameObject m_Animator;
+    
+    private bool gravity = true;
+    
     [Range(0,50)]
     public float speed = 5F;
 
     [Range(0,50)]
     public float jumpSpeed = 8F;
-    
-    private bool gravity = true;
+
+    public int NbJump = 1;
     
     private void Awake()
     {
@@ -29,11 +33,12 @@ public class PlayerController : MonoBehaviour
         float translationZ = Input.GetAxis("Vertical");
 
 
-        Vector3 translation = new Vector3(translationX,0, translationZ );
+        Vector3 translation = new Vector3(translationZ,0, -translationX );
         m_body.AddForce(translation * speed);
-
-        if (Input.GetKeyDown (KeyCode.Space)){
+        if (Input.GetKeyDown (KeyCode.Space) && NbJump == 1)
+        {
             m_body.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
+            NbJump -= 1;
         }
         
         if (Input.GetKeyDown(KeyCode.G))
@@ -51,5 +56,24 @@ public class PlayerController : MonoBehaviour
             
         }
 
+        if (m_body.transform.position.y < -50)
+        {
+            m_Game.LooseGame();
+        }
+
+    }
+    
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Floor") && NbJump == 0)
+        {
+            NbJump += 1;
+        }   
+        
+        if (collision.gameObject.CompareTag("Arrived"))
+        {
+            
+        }
+        
     }
 }
