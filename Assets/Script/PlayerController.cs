@@ -87,6 +87,7 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionExit(Collision collision)
     {
         isGrounded = false;
+
     }
     public void StopMovement()
     {

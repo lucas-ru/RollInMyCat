@@ -5,17 +5,16 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    
     public static GameManager Instance;
-    
     public bool Playing { get; private set; }
-    
     public PlayerManager player { get; private set; }
-
+    public DumbbellManager dumbbell { get; private set; }
     public CameraManager camera { get; private set; }
-    
     public UIManager uimanager { get; private set; }
-    
     public AudioManager Audio { get; private set; }
+    public TimeManager Timer { get; private set; }
+    public ScoreManager Score { get; private set; }
     
     
     private void Awake()
@@ -28,11 +27,14 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
+        dumbbell = GetComponent<DumbbellManager>();
         player = GetComponent<PlayerManager>();
         camera = GetComponent<CameraManager>();
         uimanager = GetComponent<UIManager>();
         Audio = GetComponent<AudioManager>();
-
+        Score = GetComponent<ScoreManager>();
+        Timer = GetComponent<TimeManager>();
+        
     }
 
     private void Update()
@@ -45,15 +47,19 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        uimanager.MainMenu.gameObject.SetActive(false);
         Playing = true;
+        Score.Reset();
+        Timer.Reset();
         Audio.PlayMainTheme();
     }
 
     public void RestartGame()
     {
         Playing = true;
+        Score.Reset();
+        Timer.Reset();
         uimanager.PausePanel.gameObject.SetActive(false);
+        uimanager.inGame.gameObject.SetActive(true);
     }
     
     public void LooseGame()
@@ -77,8 +83,11 @@ public class GameManager : MonoBehaviour
     public void PauseGame()
     {
         Playing = false;
+        uimanager.inGame.gameObject.SetActive(false);
         uimanager.PausePanel.gameObject.SetActive(true);
+        
         player.ball.StopMovement();
     }
+    
     
 }
