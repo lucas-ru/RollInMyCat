@@ -17,8 +17,16 @@ public class GameManager : MonoBehaviour
     public TimeManager Timer { get; private set; }
     public ScoreManager Score { get; private set; }
     public GameUIManager Gameuimanager { get; private set; }
+    
+    public string UNLOCKEDLEVEL = "numberLevelUnlock";
 
-    private int level = 1;
+    public int UnlockedLevel
+    {
+        get => PlayerPrefs.GetInt(UNLOCKEDLEVEL,1);
+        set => PlayerPrefs.SetInt(UNLOCKEDLEVEL, value);
+
+    }
+
     private void Awake()
     {
         if (Instance == null)
@@ -89,8 +97,11 @@ public class GameManager : MonoBehaviour
 
     public void NextLevel()
     {
-        level++;
-        SceneManager.LoadScene("Map_0"+level, LoadSceneMode.Single);
+        Debug.Log(UnlockedLevel);
+        UnlockedLevel++;
+        Debug.Log(UnlockedLevel);
+        Timer.SubmitTime(Timer.m_TimeLeft);
+        SceneManager.LoadScene("Map_"+UnlockedLevel, LoadSceneMode.Single);
     }
 
     public void PauseGame()

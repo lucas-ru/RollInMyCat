@@ -9,6 +9,8 @@ TagManager:
   - Arrived
   - LoosePanel
   - WinPanel
+  - Jump
+  - Tp
   layers:
   - Default
   - TransparentFX

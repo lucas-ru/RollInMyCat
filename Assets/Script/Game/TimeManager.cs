@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TimeManager : MonoBehaviour
 {
@@ -10,18 +11,19 @@ public class TimeManager : MonoBehaviour
 
     public float m_TimeLeft;
     
-    private const string BEST = "bestscore";
+    private string BEST;
     
     public float Best
     {
         get => PlayerPrefs.GetFloat(BEST,0);
-        set => PlayerPrefs.GetFloat(BEST, value);
+        set => PlayerPrefs.SetFloat(BEST, value);
     }
 
     public event EventHandler<EventArgs> Completed;
     
     private void Awake()
     {
+        BEST = "bestscore_" + SceneManager.GetActiveScene().name;
         m_Game = GameManager.Instance;
     }
 
@@ -34,7 +36,7 @@ public class TimeManager : MonoBehaviour
 
     public void SubmitTime(float time)
     {
-        if (time > Best)
+        if (time < Best || Best == 0)
         {
             Best = time;
         }

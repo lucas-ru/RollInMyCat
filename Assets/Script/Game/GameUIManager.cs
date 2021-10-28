@@ -13,20 +13,12 @@ public class GameUIManager : MonoBehaviour
     public GameObject LoosePanel;
     public GameObject PausePanel;
     public GameObject inGame;
-
-    
     public TextMeshProUGUI score;
     public TextMeshProUGUI time;
     public TextMeshProUGUI besttime;
 
     private void Awake()
     {
-        for( int i=0; i<gameObject.transform.childCount; i++ )
-        {
-            GameObject go = gameObject.transform.GetChild(i).gameObject;
-            Debug.Log(go);
-        }
-        
         m_Game = GameManager.Instance;
     }
     

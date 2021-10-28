@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded = true;
 
     private int nbJump;
-
+    
     public bool CanChangeGravity = false;
     
     [Range(0,10)]
@@ -32,6 +33,14 @@ public class PlayerController : MonoBehaviour
     {
         m_body = GetComponent<Rigidbody>();
         m_Game = GameManager.Instance;
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Map_3"))
+        {
+            MaxJump = 2;
+        }
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Map_1") || SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Map_2"))
+        {
+            MaxJump = 1;
+        }
         nbJump = MaxJump;
     }
 
@@ -81,6 +90,16 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag == "Arrived")
         {
             m_Game.NextLevel();
+        }
+
+        if (collision.gameObject.tag == "Jump")
+        {
+            Debug.Log("Explosion");
+            m_body.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
+        }
+        if (collision.gameObject.tag == "Tp")
+        {
+            m_body.transform.position = new Vector3(171,61,0);
         }
         nbJump = MaxJump;
         isGrounded = true;
