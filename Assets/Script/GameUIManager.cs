@@ -5,21 +5,28 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class UIManager : MonoBehaviour
+public class GameUIManager : MonoBehaviour
 {
     private GameManager m_Game;
 
     public GameObject WinPanel;
     public GameObject LoosePanel;
     public GameObject PausePanel;
-    public GameObject MainMenu;
     public GameObject inGame;
 
     
     public TextMeshProUGUI score;
     public TextMeshProUGUI time;
+    public TextMeshProUGUI besttime;
+
     private void Awake()
     {
+        for( int i=0; i<gameObject.transform.childCount; i++ )
+        {
+            GameObject go = gameObject.transform.GetChild(i).gameObject;
+            Debug.Log(go);
+        }
+        
         m_Game = GameManager.Instance;
     }
     
@@ -28,8 +35,9 @@ public class UIManager : MonoBehaviour
         if (m_Game.Playing)
         {
             score.text = "Score : " + m_Game.Score.Value;
-            time.text = m_Game.Timer.Formatted;
+            time.text = m_Game.Timer.Formatted(m_Game.Timer.m_TimeLeft);
         }
+        besttime.text = "Best time : " + m_Game.Timer.Formatted(m_Game.Timer.Best);
     }
 
     public void ContinueGame()
@@ -42,16 +50,8 @@ public class UIManager : MonoBehaviour
         m_Game.EndGame();   
     }
 
-    public void FirstStart()
+    public void StartGame()
     {
-        MainMenu.gameObject.SetActive(false);
-        inGame.gameObject.SetActive(true);
         m_Game.StartGame();
-    }
-
-    public void StartGameInMenu()
-    {
-        SceneManager.LoadScene("Map_01", LoadSceneMode.Single);
-        FirstStart();
     }
 }

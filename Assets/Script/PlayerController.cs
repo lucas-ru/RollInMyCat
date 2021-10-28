@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
 
     private int nbJump;
 
+    public bool CanChangeGravity = false;
+    
     [Range(0,10)]
     public int MaxJump = 1;
     
@@ -43,13 +45,14 @@ public class PlayerController : MonoBehaviour
             
             Vector3 translation = new Vector3(translationZ,0, -translationX );
             m_body.AddForce(translation * speed);
-            if (Input.GetKeyDown (KeyCode.Space) && isGrounded && nbJump > 0)
+            if (Input.GetKeyDown (KeyCode.Space) && (isGrounded || nbJump > 0))
             {
+                isGrounded = false;
                 m_body.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
                 nbJump -= 1;
             }
                     
-            if (Input.GetKeyDown(KeyCode.G))
+            if (Input.GetKeyDown(KeyCode.G) && CanChangeGravity)
             {
                 if (gravity)
                 {
@@ -77,17 +80,11 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Arrived")
         {
-            m_Game.WinGame();
+            m_Game.NextLevel();
         }
         nbJump = MaxJump;
         isGrounded = true;
         
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        isGrounded = false;
-
     }
     public void StopMovement()
     {

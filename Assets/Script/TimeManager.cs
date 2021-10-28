@@ -6,19 +6,16 @@ using UnityEngine;
 public class TimeManager : MonoBehaviour
 {
     private GameManager m_Game;
-    public int totalTime = 30;
+    public int totalTime = 0;
 
-    private float m_TimeLeft;
-
-    public string Formatted
+    public float m_TimeLeft;
+    
+    private const string BEST = "bestscore";
+    
+    public float Best
     {
-        get
-        {
-            int minutes = Mathf.FloorToInt(m_TimeLeft/60);
-            int seconds = Mathf.FloorToInt(m_TimeLeft%60);
-            return string.Format("{0:00}:{1:00}", minutes, seconds);
-
-        }
+        get => PlayerPrefs.GetFloat(BEST,0);
+        set => PlayerPrefs.GetFloat(BEST, value);
     }
 
     public event EventHandler<EventArgs> Completed;
@@ -28,7 +25,20 @@ public class TimeManager : MonoBehaviour
         m_Game = GameManager.Instance;
     }
 
-    
+    public string Formatted(float time)
+    {
+        int minutes = Mathf.FloorToInt(time/60);
+        int seconds = Mathf.FloorToInt(time%60);
+        return string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
+
+    public void SubmitTime(float time)
+    {
+        if (time > Best)
+        {
+            Best = time;
+        }
+    }
 
     public void Reset()
     {
