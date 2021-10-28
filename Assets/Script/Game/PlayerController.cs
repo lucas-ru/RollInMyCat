@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody m_body;
+
+    public Vector3 startposition;
     
     private GameManager m_Game;
     
@@ -32,6 +34,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         m_body = GetComponent<Rigidbody>();
+        startposition = m_body.transform.position;
         m_Game = GameManager.Instance;
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Map_3"))
         {

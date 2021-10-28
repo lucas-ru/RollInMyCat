@@ -55,6 +55,12 @@ public class GameManager : MonoBehaviour
         {
             PauseGame();
         }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            player.ball.transform.position = player.ball.startposition;
+            StartGame();
+        }
     }
 
     public void StartGame()
@@ -64,6 +70,7 @@ public class GameManager : MonoBehaviour
         Timer.Reset();
         Audio.PlayMainTheme();
         Gameuimanager.inGame.gameObject.SetActive(true);
+        Gameuimanager.PausePanel.gameObject.SetActive(false);
     }
 
     public void RestartGame()
