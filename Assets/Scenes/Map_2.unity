@@ -23844,6 +23844,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7340a6b1ee17ce1409f6cdf203efeb31, type: 3}
+--- !u!114 &2200511727534213403 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5025526715918957178, guid: 7340a6b1ee17ce1409f6cdf203efeb31, type: 3}
+  m_PrefabInstance: {fileID: 2200511727534213402}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2200511727534213404 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5120577433413621303, guid: 7340a6b1ee17ce1409f6cdf203efeb31, type: 3}
+  m_PrefabInstance: {fileID: 2200511727534213402}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5339843649111898250
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23888,6 +23910,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1558127386984541000}
     - target: {fileID: 5339843649704804289, guid: abe3a12161f4900448a3229c9a7a0c1b, type: 3}
+      propertyPath: bestscore
+      value: 
+      objectReference: {fileID: 2200511727534213404}
+    - target: {fileID: 5339843649704804289, guid: abe3a12161f4900448a3229c9a7a0c1b, type: 3}
       propertyPath: LoosePanel
       value: 
       objectReference: {fileID: 1558127386984541005}
@@ -23895,6 +23921,10 @@ PrefabInstance:
       propertyPath: PausePanel
       value: 
       objectReference: {fileID: 1558127386984541004}
+    - target: {fileID: 5339843649704804289, guid: abe3a12161f4900448a3229c9a7a0c1b, type: 3}
+      propertyPath: deathCounter
+      value: 
+      objectReference: {fileID: 2200511727534213403}
     - target: {fileID: 6927601898492948470, guid: abe3a12161f4900448a3229c9a7a0c1b, type: 3}
       propertyPath: source
       value: 

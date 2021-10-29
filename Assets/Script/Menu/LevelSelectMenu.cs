@@ -23,13 +23,13 @@ public class LevelSelectMenu : MonoBehaviour
     public GameObject backButton;
     
     private string SCORE;
-    private int Score
+    public int Score
     {
         get => PlayerPrefs.GetInt(SCORE,0);
         set => PlayerPrefs.SetInt(SCORE, value);
     }
 
-    private int Level
+    public int Level
     {
         get => PlayerPrefs.GetInt(LEVEL,1);
     }

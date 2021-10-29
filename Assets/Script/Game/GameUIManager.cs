@@ -16,6 +16,8 @@ public class GameUIManager : MonoBehaviour
     public TextMeshProUGUI score;
     public TextMeshProUGUI time;
     public TextMeshProUGUI besttime;
+    public TextMeshProUGUI bestscore;
+    public TextMeshProUGUI deathCounter;
 
     private void Awake()
     {
@@ -30,6 +32,8 @@ public class GameUIManager : MonoBehaviour
             time.text = m_Game.Timer.Formatted(m_Game.Timer.m_TimeLeft);
         }
         besttime.text = "Best time : " + m_Game.Timer.Formatted(m_Game.Timer.Best);
+        bestscore.text = "Best score : " + m_Game.Score.Score;
+        deathCounter.text = "death : " + m_Game.Deathmanager.nbMort;
     }
 
     public void ContinueGame()

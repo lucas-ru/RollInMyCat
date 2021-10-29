@@ -17,10 +17,11 @@ public class GameManager : MonoBehaviour
     public TimeManager Timer { get; private set; }
     public ScoreManager Score { get; private set; }
     public GameUIManager Gameuimanager { get; private set; }
+    public DeathManager Deathmanager { get; private set; }
     
     private string LEVEL = "LevelNumber";
 
-    private int Level
+    public int Level
     {
         get => PlayerPrefs.GetInt(LEVEL,1);
         set => PlayerPrefs.SetInt(LEVEL, value);
@@ -44,6 +45,7 @@ public class GameManager : MonoBehaviour
         Audio = GetComponent<AudioManager>();
         Score = GetComponent<ScoreManager>();
         Timer = GetComponent<TimeManager>();
+        Deathmanager = GetComponent<DeathManager>();
         Menuuimanager = GetComponent<MenuUIManager>();
 
         StartGame();
@@ -67,6 +69,7 @@ public class GameManager : MonoBehaviour
         Playing = true;
         Score.Reset();
         Timer.Reset();
+        Deathmanager.Reset();
         Audio.PlayMainTheme();
         Gameuimanager.inGame.gameObject.SetActive(true);
         Gameuimanager.PausePanel.gameObject.SetActive(false);
@@ -78,6 +81,7 @@ public class GameManager : MonoBehaviour
         player.ball.transform.position = player.ball.startposition;
         Playing = true;
         Audio.PlayMainTheme();
+        Deathmanager.DieAndRetry();
         Gameuimanager.inGame.gameObject.SetActive(true);
         Gameuimanager.PausePanel.gameObject.SetActive(false);
         Gameuimanager.LoosePanel.gameObject.SetActive(false);
@@ -122,6 +126,7 @@ public class GameManager : MonoBehaviour
         IndexActualScene++;
         Timer.SubmitTime(Timer.m_TimeLeft);
         Score.SubmitScore(Score.Value);
+        Deathmanager.SubmitDeath(Deathmanager.nbMort);
         SceneManager.LoadScene("Map_"+IndexActualScene, LoadSceneMode.Single);
     }
 
@@ -133,6 +138,4 @@ public class GameManager : MonoBehaviour
         
         player.ball.StopMovement();
     }
-    
-    
 }

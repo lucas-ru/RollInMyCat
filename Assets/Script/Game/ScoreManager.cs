@@ -11,7 +11,7 @@ public class ScoreManager : MonoBehaviour
     
     private string SCORE;
     
-    private int Score
+    public int Score
     {
         get => PlayerPrefs.GetInt(SCORE,0);
         set => PlayerPrefs.SetInt(SCORE, value);
