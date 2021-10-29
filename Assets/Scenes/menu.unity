@@ -588,7 +588,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalLevel: 11
-  UNLOCKEDLEVEL: numberLevelUnlock
   nextButton: {fileID: 791646666}
   backButton: {fileID: 1520496512}
 --- !u!224 &263676632 stripped
@@ -3246,7 +3245,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MainMenu: {fileID: 925974104}
   LevelPanel: {fileID: 1175810220}
-  UNLOCKEDLEVEL: numberLevelUnlock
 --- !u!4 &1839206909
 Transform:
   m_ObjectHideFlags: 0

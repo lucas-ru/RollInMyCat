@@ -36,6 +36,11 @@ public class GameUIManager : MonoBehaviour
     {
         m_Game.RestartGame();
     }
+
+    public void MoveInMenu()
+    {
+        SceneManager.LoadScene("menu", LoadSceneMode.Single);
+    }
     
     public void ExitGame()
     {

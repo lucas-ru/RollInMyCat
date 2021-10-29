@@ -12,12 +12,14 @@ public class MenuUIManager : MonoBehaviour
     public GameObject MainMenu;
     public GameObject LevelPanel;
 
-    public string UNLOCKEDLEVEL = "numberLevelUnlock";
     
-    public int UnlockedLevel
+    private string LEVEL = "LevelNumber";
+    
+    private int Level
     {
-        get => PlayerPrefs.GetInt(UNLOCKEDLEVEL,1);
+        get => PlayerPrefs.GetInt(LEVEL,1);
     }
+    
     private void Awake()
     {
         for( int i=0; i<gameObject.transform.childCount; i++ )
@@ -29,7 +31,8 @@ public class MenuUIManager : MonoBehaviour
 
     public void StartGameInMenu()
     {
-        SceneManager.LoadScene("Map_"+ UnlockedLevel, LoadSceneMode.Single);
+        Debug.Log(Level);
+        SceneManager.LoadScene("Map_"+ Level, LoadSceneMode.Single);
 
     }
 

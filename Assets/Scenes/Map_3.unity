@@ -17287,58 +17287,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &766969674 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7996174354223136841, guid: abe3a12161f4900448a3229c9a7a0c1b, type: 3}
-  m_PrefabInstance: {fileID: 7996174355280136845}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &766969675
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 766969674}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f887307fbac6384690340f91e9d2a3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WinPanel: {fileID: 99929756}
-  LoosePanel: {fileID: 99929755}
-  PausePanel: {fileID: 99929754}
-  inGame: {fileID: 99929753}
-  score: {fileID: 99929752}
-  time: {fileID: 99929751}
-  besttime: {fileID: 99929750}
---- !u!114 &766969680
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 766969674}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a1200c67d6ea2a4382c7698ec357856, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &766969681
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 766969674}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91ed03c09f364544899ae84b931fbfae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  totalTime: 0
-  m_TimeLeft: 0
 --- !u!4 &839227139 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1442487310613734280, guid: 04421ce965b1f044c8985cdb7bad9b06, type: 3}
@@ -21008,6 +20958,50 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 17942845206106379, guid: abe3a12161f4900448a3229c9a7a0c1b, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 963194228}
+    - target: {fileID: 17942845206106379, guid: abe3a12161f4900448a3229c9a7a0c1b, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1808240672}
+    - target: {fileID: 195605378151606810, guid: abe3a12161f4900448a3229c9a7a0c1b, type: 3}
+      propertyPath: ball
+      value: 
+      objectReference: {fileID: 1808240668}
+    - target: {fileID: 5339843649704804289, guid: abe3a12161f4900448a3229c9a7a0c1b, type: 3}
+      propertyPath: time
+      value: 
+      objectReference: {fileID: 99929751}
+    - target: {fileID: 5339843649704804289, guid: abe3a12161f4900448a3229c9a7a0c1b, type: 3}
+      propertyPath: score
+      value: 
+      objectReference: {fileID: 99929752}
+    - target: {fileID: 5339843649704804289, guid: abe3a12161f4900448a3229c9a7a0c1b, type: 3}
+      propertyPath: inGame
+      value: 
+      objectReference: {fileID: 99929753}
+    - target: {fileID: 5339843649704804289, guid: abe3a12161f4900448a3229c9a7a0c1b, type: 3}
+      propertyPath: WinPanel
+      value: 
+      objectReference: {fileID: 99929756}
+    - target: {fileID: 5339843649704804289, guid: abe3a12161f4900448a3229c9a7a0c1b, type: 3}
+      propertyPath: besttime
+      value: 
+      objectReference: {fileID: 99929750}
+    - target: {fileID: 5339843649704804289, guid: abe3a12161f4900448a3229c9a7a0c1b, type: 3}
+      propertyPath: LoosePanel
+      value: 
+      objectReference: {fileID: 99929755}
+    - target: {fileID: 5339843649704804289, guid: abe3a12161f4900448a3229c9a7a0c1b, type: 3}
+      propertyPath: PausePanel
+      value: 
+      objectReference: {fileID: 99929754}
+    - target: {fileID: 6927601898492948470, guid: abe3a12161f4900448a3229c9a7a0c1b, type: 3}
+      propertyPath: source
+      value: 
+      objectReference: {fileID: 963194229}
     - target: {fileID: 7996174354223136836, guid: abe3a12161f4900448a3229c9a7a0c1b, type: 3}
       propertyPath: source
       value: 

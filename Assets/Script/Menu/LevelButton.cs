@@ -12,7 +12,7 @@ public class LevelButton : MonoBehaviour
     
     public TextMeshProUGUI levelText;
 
-    private int level = 0;
+    private int Listlevel = 0;
 
     private Button button;
 
@@ -22,12 +22,13 @@ public class LevelButton : MonoBehaviour
         button = GetComponent<Button>();
     }
 
-    public void Setup(int level, bool isUnlock)
+    public void Setup(int Listlevel, bool isUnlock,int score)
     {
-        this.level = level;
-        levelText.text = level.ToString();
+        this.Listlevel = Listlevel;
+        levelText.text = "level " + Listlevel + "\n" + score + "/10";
         if (isUnlock)
         {
+            
             button.interactable = true;
             button.enabled = true;
             levelText.gameObject.SetActive(true);
@@ -42,6 +43,6 @@ public class LevelButton : MonoBehaviour
 
     public void Onclick()
     {
-        menu.StartLevel(level);
+        menu.StartLevel(Listlevel);
     }
 }

@@ -18,12 +18,12 @@ public class GameManager : MonoBehaviour
     public ScoreManager Score { get; private set; }
     public GameUIManager Gameuimanager { get; private set; }
     
-    public string UNLOCKEDLEVEL = "numberLevelUnlock";
+    private string LEVEL = "LevelNumber";
 
-    public int UnlockedLevel
+    private int Level
     {
-        get => PlayerPrefs.GetInt(UNLOCKEDLEVEL,1);
-        set => PlayerPrefs.SetInt(UNLOCKEDLEVEL, value);
+        get => PlayerPrefs.GetInt(LEVEL,1);
+        set => PlayerPrefs.SetInt(LEVEL, value);
 
     }
 
@@ -58,8 +58,7 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            player.ball.transform.position = player.ball.startposition;
-            StartGame();
+            Respawn();
         }
     }
 
@@ -71,6 +70,17 @@ public class GameManager : MonoBehaviour
         Audio.PlayMainTheme();
         Gameuimanager.inGame.gameObject.SetActive(true);
         Gameuimanager.PausePanel.gameObject.SetActive(false);
+        Gameuimanager.LoosePanel.gameObject.SetActive(false);
+    }
+
+    public void Respawn()
+    {
+        player.ball.transform.position = player.ball.startposition;
+        Playing = true;
+        Audio.PlayMainTheme();
+        Gameuimanager.inGame.gameObject.SetActive(true);
+        Gameuimanager.PausePanel.gameObject.SetActive(false);
+        Gameuimanager.LoosePanel.gameObject.SetActive(false);
     }
 
     public void RestartGame()
@@ -104,11 +114,15 @@ public class GameManager : MonoBehaviour
 
     public void NextLevel()
     {
-        Debug.Log(UnlockedLevel);
-        UnlockedLevel++;
-        Debug.Log(UnlockedLevel);
+        int IndexActualScene = SceneManager.GetActiveScene().buildIndex;
+        if (IndexActualScene == Level)
+        {
+            Level++;
+        }
+        IndexActualScene++;
         Timer.SubmitTime(Timer.m_TimeLeft);
-        SceneManager.LoadScene("Map_"+UnlockedLevel, LoadSceneMode.Single);
+        Score.SubmitScore(Score.Value);
+        SceneManager.LoadScene("Map_"+IndexActualScene, LoadSceneMode.Single);
     }
 
     public void PauseGame()

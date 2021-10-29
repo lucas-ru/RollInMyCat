@@ -23,14 +23,14 @@ public class TimeManager : MonoBehaviour
     
     private void Awake()
     {
-        BEST = "bestscore_" + SceneManager.GetActiveScene().name;
+        BEST = "besttime_" + SceneManager.GetActiveScene().name;
         m_Game = GameManager.Instance;
     }
 
     public string Formatted(float time)
     {
         int minutes = Mathf.FloorToInt(time/60);
-        int seconds = Mathf.FloorToInt(time%60);
+        int seconds = Mathf.FloorToInt(time%60);  
         return string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 

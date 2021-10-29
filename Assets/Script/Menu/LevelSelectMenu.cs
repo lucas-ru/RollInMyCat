@@ -8,7 +8,7 @@ public class LevelSelectMenu : MonoBehaviour
 {
     public int totalLevel = 0;
 
-    public string UNLOCKEDLEVEL = "numberLevelUnlock";
+    private string LEVEL = "LevelNumber";
 
     private LevelButton[] levelButtons;
 
@@ -21,10 +21,17 @@ public class LevelSelectMenu : MonoBehaviour
     public GameObject nextButton;
 
     public GameObject backButton;
-
-    public int UnlockedLevel
+    
+    private string SCORE;
+    private int Score
     {
-        get => PlayerPrefs.GetInt(UNLOCKEDLEVEL,1);
+        get => PlayerPrefs.GetInt(SCORE,0);
+        set => PlayerPrefs.SetInt(SCORE, value);
+    }
+
+    private int Level
+    {
+        get => PlayerPrefs.GetInt(LEVEL,1);
     }
     
     void Awake()
@@ -35,7 +42,6 @@ public class LevelSelectMenu : MonoBehaviour
     private void Start()
     {
         Refresh();
-        Debug.Log(UnlockedLevel);
     }
 
     public void ClickNext()
@@ -56,11 +62,12 @@ public class LevelSelectMenu : MonoBehaviour
         int index = page * pageItem;
         for (int i = 0; i < levelButtons.Length; i++)
         {   
-            int level = index + i + 1;
-            if (level<=totalLevel)
+            int Listlevel = index + i + 1;
+            if (Listlevel<=totalLevel)
             {
+                SCORE = "bestscore_Map_" + Listlevel;
                 levelButtons[i].gameObject.SetActive(true);
-                levelButtons[i].Setup(level, level<=UnlockedLevel);
+                levelButtons[i].Setup(Listlevel,Listlevel<=Level,Score);
             }
             else
             {
