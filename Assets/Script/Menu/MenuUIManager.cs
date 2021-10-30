@@ -9,25 +9,20 @@ using Button = UnityEngine.UI.Button;
 
 public class MenuUIManager : MonoBehaviour
 {
+    
     public GameObject MainMenu;
     public GameObject LevelPanel;
+    public GameObject ParamPanel;
 
-    
     private string LEVEL = "LevelNumber";
+    
     
     private int Level
     {
         get => PlayerPrefs.GetInt(LEVEL,1);
     }
-    
-    private void Awake()
-    {
-        for( int i=0; i<gameObject.transform.childCount; i++ )
-        {
-            GameObject go = gameObject.transform.GetChild(i).gameObject;
-            Debug.Log(go);
-        }
-    }
+
+
 
     public void StartGameInMenu()
     {
@@ -46,5 +41,14 @@ public class MenuUIManager : MonoBehaviour
     {
         MainMenu.gameObject.SetActive(true);
         LevelPanel.gameObject.SetActive(false);
+        ParamPanel.gameObject.SetActive(false);
     }
+
+    public void GoParameterPanel()
+    {
+        ParamPanel.gameObject.SetActive(true);
+        MainMenu.gameObject.SetActive(false);
+    }
+
+
 }

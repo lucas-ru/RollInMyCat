@@ -11,6 +11,7 @@ TagManager:
   - WinPanel
   - Jump
   - Tp
+  - NianCat
   layers:
   - Default
   - TransparentFX

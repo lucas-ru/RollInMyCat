@@ -12,12 +12,12 @@ public class GameManager : MonoBehaviour
     public PlayerManager player { get; private set; }
     public DumbbellManager dumbbell { get; private set; }
     public CameraManager camera { get; private set; }
-    public MenuUIManager Menuuimanager { get; private set; }
     public AudioManager Audio { get; private set; }
     public TimeManager Timer { get; private set; }
     public ScoreManager Score { get; private set; }
     public GameUIManager Gameuimanager { get; private set; }
     public DeathManager Deathmanager { get; private set; }
+    public ParticleManager Particle { get; private set; }
     
     private string LEVEL = "LevelNumber";
 
@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
         Score = GetComponent<ScoreManager>();
         Timer = GetComponent<TimeManager>();
         Deathmanager = GetComponent<DeathManager>();
-        Menuuimanager = GetComponent<MenuUIManager>();
+        Particle = GetComponent<ParticleManager>();
 
         StartGame();
     }
