@@ -19,6 +19,7 @@ public class GameUIManager : MonoBehaviour
     public TextMeshProUGUI besttime;
     public TextMeshProUGUI bestscore;
     public TextMeshProUGUI deathCounter;
+    public TextMeshProUGUI VarNbJump;
 
     private void Awake()
     {
@@ -55,5 +56,10 @@ public class GameUIManager : MonoBehaviour
     public void ControlRedirect()
     {
         m_Game.DisplayControl();
+    }
+    
+    public void RenderVarNbJump()
+    {
+        VarNbJump.text = m_Game.player.ball.MaxJump.ToString();
     }
 }

@@ -105,6 +105,7 @@ public class GameManager : MonoBehaviour
 
     public void DisplayControl()
     {
+        Gameuimanager.RenderVarNbJump();
         Gameuimanager.ControlPanel.gameObject.SetActive(true);
         Gameuimanager.PausePanel.gameObject.SetActive(false);
     }

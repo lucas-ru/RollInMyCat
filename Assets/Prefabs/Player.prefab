@@ -127,7 +127,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_NianCatImage: {fileID: 0}
   startposition: {x: 0, y: 0, z: 0}
+  actualspeed: 0
+  currentDirection: {x: 0, y: 0, z: 0}
   CanChangeGravity: 0
   MaxJump: 1
-  speed: 2
+  speed: 3
   jumpSpeed: 7

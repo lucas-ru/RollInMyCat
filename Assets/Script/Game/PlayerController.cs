@@ -18,8 +18,7 @@ public class PlayerController : MonoBehaviour
 
     private GameObject MyBall;
     
-    
-    
+
     private bool gravity = true;
     
     private float gravityValue = 14f;
@@ -34,9 +33,6 @@ public class PlayerController : MonoBehaviour
     
     public float actualspeed;
 
-    public Vector3 currentDirection;
-    
-    
     public bool CanChangeGravity = false;
     
     [Range(0,10)]
@@ -61,21 +57,17 @@ public class PlayerController : MonoBehaviour
         m_Game = GameManager.Instance;
         
         m_body = GetComponent<Rigidbody>();
+        
         startposition = m_body.transform.position;
         MyBall = GameObject.FindGameObjectsWithTag("Player")[0];
+        
         Physics.gravity = new Vector3(0, -gravityValue, 0);
+        
         m_NianCatImage = GameObject.FindGameObjectsWithTag("NianCat")[0];
         m_NianCatImage.transform.rotation = Quaternion.Euler(0,0,0);
         m_NianCatImage.transform.position = MyBall.transform.position;
         
-        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Map_3"))
-        {
-            MaxJump = 2;
-        }
-        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Map_1") || SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Map_2"))
-        {
-            MaxJump = 1;
-        }
+        LoadSceneSpecificity();
         LoadDifficulty();
         nbJump = MaxJump;
     }
@@ -84,7 +76,6 @@ public class PlayerController : MonoBehaviour
     {
         actualspeed = (transform.position - lastPosition).magnitude / Time.fixedDeltaTime;
         m_NianCatImage.transform.position = MyBall.transform.position;
-        currentDirection = (transform.position-lastPosition);
         
         if (m_Game.Playing)
         {
@@ -146,8 +137,7 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.tag == "Jump")
         {
-            Debug.Log("Explosion");
-            m_body.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
+            m_body.AddForce(Vector3.up * jumpSpeed*1.5f, ForceMode.Impulse);
         }
         if (collision.gameObject.tag == "Tp")
         {
@@ -158,12 +148,21 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    // private void OnCollisionExit(Collision other)
-    // {
-    //     VerticalVelocity -= gravityValue * Time.deltaTime;
-    //     Vector3 Jump = new Vector3(0, VerticalVelocity, 0);
-    //     m_body.velocity = Jump * Time.deltaTime;
-    // }
+    public void LoadSceneSpecificity()
+    {
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Map_3"))
+        {
+            MaxJump = 2;
+        }else if(
+            SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Map_1") 
+            || SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Map_2")
+            || SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Map_4")
+            || SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Map_5")
+        )
+        {
+            MaxJump = 1;
+        }
+    }
 
 
     public void StopMovement()
