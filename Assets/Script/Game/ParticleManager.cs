@@ -14,30 +14,36 @@ public class ParticleManager : MonoBehaviour
     public ParticleSystem[] purpleParticles;
 
     
-    private string DIFFICULTY = "Difficulty";
-    private int Difficulty
+    private string AUTORIZEPARTICLE = "Particle";
+    private int AutorizeParticle
     {
-        get => PlayerPrefs.GetInt(DIFFICULTY,1);
+        get => PlayerPrefs.GetInt(AUTORIZEPARTICLE,1);
+        set => PlayerPrefs.SetInt(AUTORIZEPARTICLE,value);
     }
     private void Awake()
     {
         m_Game = GameManager.Instance;
+        if (AutorizeParticle == 1)
+        {
+            LoadParticles(blueParticles);
+            LoadParticles(yellowParticles);
+            LoadParticles(redParticles);
+            LoadParticles(greenParticles);
+            LoadParticles(purpleParticles);
+        }
         
-        LoadParticles(blueParticles);
-        LoadParticles(yellowParticles);
-        LoadParticles(redParticles);
-        LoadParticles(greenParticles);
-        LoadParticles(purpleParticles);
     }
 
     private void Update()
     {
-        StyleParticle(blueParticles);
-        StyleParticle(yellowParticles);
-        StyleParticle(redParticles);
-        StyleParticle(greenParticles);
-        StyleParticle(purpleParticles);
-
+        if (AutorizeParticle==1)
+        {
+            StyleParticle(blueParticles);
+            StyleParticle(yellowParticles);
+            StyleParticle(redParticles);
+            StyleParticle(greenParticles);
+            StyleParticle(purpleParticles);
+        }
     }
 
     public void LoadParticles(ParticleSystem[] particle)
