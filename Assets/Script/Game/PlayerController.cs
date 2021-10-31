@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour
     {
         actualspeed = (transform.position - lastPosition).magnitude / Time.fixedDeltaTime;
         m_NianCatImage.transform.position = MyBall.transform.position;
-        currentDirection = (transform.position-lastPosition).normalized;
+        currentDirection = (transform.position-lastPosition);
         
         if (m_Game.Playing)
         {

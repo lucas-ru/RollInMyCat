@@ -13,6 +13,7 @@ public class GameUIManager : MonoBehaviour
     public GameObject LoosePanel;
     public GameObject PausePanel;
     public GameObject inGame;
+    public GameObject ControlPanel;
     public TextMeshProUGUI score;
     public TextMeshProUGUI time;
     public TextMeshProUGUI besttime;
@@ -45,14 +46,14 @@ public class GameUIManager : MonoBehaviour
     {
         SceneManager.LoadScene("menu", LoadSceneMode.Single);
     }
-    
-    public void ExitGame()
-    {
-        m_Game.EndGame();   
-    }
 
     public void StartGame()
     {
         m_Game.StartGame();
+    }
+
+    public void ControlRedirect()
+    {
+        m_Game.DisplayControl();
     }
 }

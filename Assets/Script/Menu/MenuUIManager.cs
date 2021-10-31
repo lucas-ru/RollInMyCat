@@ -50,5 +50,8 @@ public class MenuUIManager : MonoBehaviour
         MainMenu.gameObject.SetActive(false);
     }
 
-
+    public void EndGame()
+    {
+        Application.Quit();
+    }
 }

@@ -7,11 +7,11 @@ public class ParticleManager : MonoBehaviour
 {
     private GameManager m_Game;
     
-    public ParticleSystem blueParticles;
-    public ParticleSystem yellowParticles;
-    public ParticleSystem redParticles;
-    public ParticleSystem greenParticles;
-    public ParticleSystem purpleParticles;
+    public ParticleSystem[] blueParticles;
+    public ParticleSystem[] yellowParticles;
+    public ParticleSystem[] redParticles;
+    public ParticleSystem[] greenParticles;
+    public ParticleSystem[] purpleParticles;
 
     
     private string DIFFICULTY = "Difficulty";
@@ -24,51 +24,41 @@ public class ParticleManager : MonoBehaviour
         m_Game = GameManager.Instance;
         
         LoadParticles(blueParticles);
-        // LoadParticles(yellowParticles);
-        // LoadParticles(redParticles);
-        // LoadParticles(greenParticles);
-        // LoadParticles(purpleParticles);
+        LoadParticles(yellowParticles);
+        LoadParticles(redParticles);
+        LoadParticles(greenParticles);
+        LoadParticles(purpleParticles);
     }
 
     private void Update()
     {
         StyleParticle(blueParticles);
-        // StyleParticle(yellowParticles);
-        // StyleParticle(redParticles);
-        // StyleParticle(greenParticles);
-        // StyleParticle(purpleParticles);
+        StyleParticle(yellowParticles);
+        StyleParticle(redParticles);
+        StyleParticle(greenParticles);
+        StyleParticle(purpleParticles);
 
     }
 
-    public void LoadParticles(ParticleSystem particle)
+    public void LoadParticles(ParticleSystem[] particle)
     {
-        particle.gameObject.SetActive(true);
-        float positionYParticle;
-        if (Difficulty==1)
+        for (int i = 0; i < particle.Length; i++)
         {
-            positionYParticle = 0.9f;
-        }else if (Difficulty == 2)
-        {
-            positionYParticle = 0.7f;;
-        }else
-        {
-            positionYParticle = 0.5f;
+            particle[i].gameObject.SetActive(true);
         }
-        particle.transform.position = new Vector3(m_Game.player.ball.transform.position.x,m_Game.player.ball.transform.position.y-positionYParticle,m_Game.player.ball.transform.position.z);
+
+    }
+
+    public void StyleParticle(ParticleSystem[] particle)
+    {
+        for (int i = 0; i < particle.Length; i++)
+        {
+            ParticleSystem.MainModule particleMain = particle[i].main;
+            if (m_Game.player.ball.actualspeed< 3000)
+            {
+                particleMain.startLifetime = m_Game.player.ball.actualspeed/1000;
+            }
+        }
         
-
-    }
-
-    public void StyleParticle(ParticleSystem particle)
-    {
-        ParticleSystem.MainModule particleMain = particle.main;
-        if (m_Game.player.ball.actualspeed< 3000)
-        {
-            particleMain.startLifetime = m_Game.player.ball.actualspeed/500;
-            particleMain.startSpeed = m_Game.player.ball.actualspeed/1000;
-
-        }
-        // particle.transform.rotation = Quaternion.Euler(m_Game.player.ball.currentDirection.x,m_Game.player.ball.currentDirection.y,m_Game.player.ball.currentDirection.z);
-        Debug.Log(particle.transform.rotation);
     }
 }

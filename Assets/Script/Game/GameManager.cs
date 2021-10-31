@@ -103,9 +103,17 @@ public class GameManager : MonoBehaviour
         Gameuimanager.LoosePanel.gameObject.SetActive(true);
     }
 
-    public void EndGame()
+    public void DisplayControl()
     {
-        Application.Quit();
+        Gameuimanager.ControlPanel.gameObject.SetActive(true);
+        Gameuimanager.PausePanel.gameObject.SetActive(false);
+    }
+
+    public void BackPauseMenu()
+    {
+        Gameuimanager.ControlPanel.gameObject.SetActive(false);
+        Gameuimanager.PausePanel.gameObject.SetActive(true);
+
     }
 
     public void WinGame()
