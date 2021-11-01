@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 5339843649704804315}
   - component: {fileID: 2884329701800243519}
   - component: {fileID: 3113874347466988589}
+  - component: {fileID: 2136667939382174476}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -109,11 +110,13 @@ MonoBehaviour:
   LoosePanel: {fileID: 0}
   PausePanel: {fileID: 0}
   inGame: {fileID: 0}
+  ControlPanel: {fileID: 0}
   score: {fileID: 0}
   time: {fileID: 0}
   besttime: {fileID: 0}
   bestscore: {fileID: 0}
   deathCounter: {fileID: 0}
+  VarNbJump: {fileID: 0}
 --- !u!114 &5339843649704804314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,3 +168,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65bae9e4237b45548ade17f9cce9e619, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blueParticles: []
+  yellowParticles: []
+  redParticles: []
+  greenParticles: []
+  purpleParticles: []
+--- !u!114 &2136667939382174476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5339843649704804288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 554a569375580fe45be2ab2f5b182bd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MovementObjX: []
+  MovementObjY: []
+  MovementObjZ: []
+  speed: 0.01

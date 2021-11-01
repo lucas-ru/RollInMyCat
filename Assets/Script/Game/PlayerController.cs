@@ -143,6 +143,10 @@ public class PlayerController : MonoBehaviour
         {
             m_body.transform.position = new Vector3(171,61,0);
         }
+        if (collision.gameObject.tag == "Floor")
+        {
+            m_Game.Plateform.active = true;
+        }
         nbJump = MaxJump;
         isGrounded = true;
         

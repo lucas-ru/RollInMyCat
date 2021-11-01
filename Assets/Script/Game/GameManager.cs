@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public GameUIManager Gameuimanager { get; private set; }
     public DeathManager Deathmanager { get; private set; }
     public ParticleManager Particle { get; private set; }
+    public PlateformManager Plateform { get; private set; }
     
     private string LEVEL = "LevelNumber";
 
@@ -47,6 +48,7 @@ public class GameManager : MonoBehaviour
         Timer = GetComponent<TimeManager>();
         Deathmanager = GetComponent<DeathManager>();
         Particle = GetComponent<ParticleManager>();
+        Plateform = GetComponent<PlateformManager>();
 
         StartGame();
     }
