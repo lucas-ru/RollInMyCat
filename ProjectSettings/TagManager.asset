@@ -13,7 +13,6 @@ TagManager:
   - Tp
   - NianCat
   - Container
-  - ObjectInMovement
   layers:
   - Default
   - TransparentFX

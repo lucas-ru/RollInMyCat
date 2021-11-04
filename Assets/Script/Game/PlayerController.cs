@@ -16,10 +16,11 @@ public class PlayerController : MonoBehaviour
     
     private GameObject m_Animator;
 
-    private GameObject MyBall;
-    
+    public GameObject MyBall;
 
-    private bool gravity = true;
+    private Vector3 translation;
+
+    public bool gravity = true;
     
     private float gravityValue = 14f;
     
@@ -61,8 +62,6 @@ public class PlayerController : MonoBehaviour
         startposition = m_body.transform.position;
         MyBall = GameObject.FindGameObjectsWithTag("Player")[0];
         
-        Physics.gravity = new Vector3(0, -gravityValue, 0);
-        
         m_NianCatImage = GameObject.FindGameObjectsWithTag("NianCat")[0];
         m_NianCatImage.transform.rotation = Quaternion.Euler(0,0,0);
         m_NianCatImage.transform.position = MyBall.transform.position;
@@ -81,9 +80,16 @@ public class PlayerController : MonoBehaviour
         {
             float translationX = Input.GetAxis("Horizontal");
             float translationZ = Input.GetAxis("Vertical");
+
+            if (gravity)
+            {
+                translation = new Vector3(translationZ,0, -translationX );
+            }
+            else
+            {
+                translation = new Vector3(translationZ,0, translationX );
+            }
             
-            
-            Vector3 translation = new Vector3(translationZ,0, -translationX );
 
 
             m_body.AddForce(translation * speed);
@@ -108,20 +114,21 @@ public class PlayerController : MonoBehaviour
             {
                 if (gravity)
                 {
-                    m_body.useGravity = false;
                     gravity = false;
+                    Physics.gravity = new Vector3(0, gravityValue, 0);
                 }
                 else
                 {
-                    m_body.useGravity = true;
                     gravity = true;
+                    Physics.gravity = new Vector3(0, -gravityValue, 0);
                 }
+                m_Game.camera.returnCamera();
                         
             }
         }
         
 
-        if (m_body.transform.position.y < -50)
+        if (m_body.transform.position.y < -50 || m_body.transform.position.y > 100)
         {
             m_Game.LooseGame();
         }
@@ -154,17 +161,25 @@ public class PlayerController : MonoBehaviour
 
     public void LoadSceneSpecificity()
     {
-        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Map_3"))
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Map_6")
+        || SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Map_10"))
         {
             MaxJump = 2;
         }else if(
             SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Map_1") 
             || SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Map_2")
+            || SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Map_3")
             || SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Map_4")
             || SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Map_5")
+            || SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Map_7")
         )
         {
             MaxJump = 1;
+        }else if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Map_8")
+        || SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Map_9"))
+        {
+            MaxJump = 1;
+            CanChangeGravity = true;
         }
     }
 
@@ -172,6 +187,7 @@ public class PlayerController : MonoBehaviour
     public void StopMovement()
     {
         m_body.velocity = Vector3.zero;
+        Physics.gravity = new Vector3(0, -gravityValue, 0);
         
     }
 

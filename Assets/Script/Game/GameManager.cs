@@ -80,6 +80,9 @@ public class GameManager : MonoBehaviour
 
     public void Respawn()
     {
+        player.ball.gravity = true;
+        player.ball.StopMovement();
+        camera.Reset();
         player.ball.transform.position = player.ball.startposition;
         Playing = true;
         Audio.PlayMainTheme();

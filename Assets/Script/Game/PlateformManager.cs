@@ -49,13 +49,18 @@ public class PlateformManager : MonoBehaviour
             
             Translation(MovementObjY,"y");
         }
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Map_10"))
+        {
+            
+            Translation(MovementObjX,"x");
+
+        }
     }
 
     public void Translation(GameObject[] mvt, string orientation) 
     {
         foreach (var Obj in mvt)
         {
-            
             switch (orientation)
             {
                 case "x":
