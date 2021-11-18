@@ -26,9 +26,7 @@ public class MenuUIManager : MonoBehaviour
 
     public void StartGameInMenu()
     {
-        Debug.Log(Level);
         SceneManager.LoadScene("Map_"+ Level, LoadSceneMode.Single);
-
     }
 
     public void GoLevelPanel()
