@@ -60,12 +60,14 @@ public class PlayerController : MonoBehaviour
         m_body = GetComponent<Rigidbody>();
         
         startposition = m_body.transform.position;
-        MyBall = GameObject.FindGameObjectsWithTag("Player")[0];
         
+        // fix the position of the image in the ball 
+        MyBall = GameObject.FindGameObjectsWithTag("Player")[0];
         m_NianCatImage = GameObject.FindGameObjectsWithTag("NianCat")[0];
         m_NianCatImage.transform.rotation = Quaternion.Euler(0,0,0);
         m_NianCatImage.transform.position = MyBall.transform.position;
         
+        // load the specificities of the level
         LoadSceneSpecificity();
         LoadDifficulty();
         nbJump = MaxJump;
@@ -73,7 +75,10 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        // recovery of the current speed
         actualspeed = (transform.position - lastPosition).magnitude / Time.fixedDeltaTime;
+        
+        // define permanently the position of the image in relation to the ball
         m_NianCatImage.transform.position = MyBall.transform.position;
         
         if (m_Game.Playing)
@@ -137,19 +142,25 @@ public class PlayerController : MonoBehaviour
     
     void OnCollisionEnter(Collision collision)
     {
+        // when the player touches the finish
         if (collision.gameObject.tag == "Arrived")
         {
             m_Game.NextLevel();
         }
-
+        
+        // type of platform that boosts the player's jump
         if (collision.gameObject.tag == "Jump")
         {
             m_body.AddForce(Vector3.up * jumpSpeed*1.5f, ForceMode.Impulse);
         }
+        
+        // type of platform that teleport the player
         if (collision.gameObject.tag == "Tp")
         {
             m_body.transform.position = new Vector3(171,61,0);
         }
+        
+        // allows to activate the movement of a platform
         if (collision.gameObject.tag == "Floor")
         {
             m_Game.Plateform.active = true;
@@ -161,6 +172,7 @@ public class PlayerController : MonoBehaviour
 
     public void LoadSceneSpecificity()
     {
+        // define the parameters of the scenes
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Map_6")
         || SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Map_10"))
         {
@@ -184,6 +196,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
+    
     public void StopMovement()
     {
         m_body.velocity = Vector3.zero;

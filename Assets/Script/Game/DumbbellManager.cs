@@ -7,26 +7,14 @@ public class DumbbellManager : MonoBehaviour
 {
     private GameManager m_Game;
     public Collectible Collectible { get; private set; }
-    public DumbbellData Data { get; private set; }
-    
-    public ParticleSystem particles;
-
-    public Light pointLight;
 
     private DumbbellManager m_Dumbbell;
-    
     public event EventHandler<DumbbellEvent> DumbbellCollected;
     void Awake()
     {
         Collectible = GetComponent<Collectible>();
         m_Game = GameManager.Instance;
         Collectible.Collected += CollectedHandler;
-    }
-
-    public void LoadData(DumbbellData data)
-    {
-        Data = data;
-        ParticleSystem.MainModule particleMain = particles.main;
     }
 
     public void CollectedHandler(object sender, EventArgs args)

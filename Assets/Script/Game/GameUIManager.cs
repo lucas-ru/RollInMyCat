@@ -45,11 +45,13 @@ public class GameUIManager : MonoBehaviour
 
     public void MoveInMenu()
     {
+        // redirects to the start menu
         SceneManager.LoadScene("menu", LoadSceneMode.Single);
     }
 
     public void StartGame()
     {
+        // allows to manage the victory interface, nevertheless this one is not yet used
         m_Game.StartGame();
     }
 
@@ -60,6 +62,7 @@ public class GameUIManager : MonoBehaviour
     
     public void RenderVarNbJump()
     {
+        // display the number of jumps allowed
         VarNbJump.text = m_Game.player.ball.MaxJump.ToString();
     }
 }

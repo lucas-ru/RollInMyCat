@@ -108,6 +108,7 @@ public class ParameterManager : MonoBehaviour
     
     public void ValueChangeCheck()
     {
+        // display music levels
         MusicVolume = SliderValue.value;
     }
 }

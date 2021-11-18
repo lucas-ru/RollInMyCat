@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class DeathManager : MonoBehaviour
 {
-    private GameManager m_Game;
-
-    public int nbMort = 0;
+    public int nbMort;
     
     private string DEATHCOUNTER = "DeathCounter";
     
@@ -14,11 +12,6 @@ public class DeathManager : MonoBehaviour
     {
         get => PlayerPrefs.GetInt(DEATHCOUNTER,0);
         set => PlayerPrefs.SetInt(DEATHCOUNTER, value);
-    }
-    
-    private void Awake()
-    {
-        m_Game = GameManager.Instance;
     }
 
     public void DieAndRetry()

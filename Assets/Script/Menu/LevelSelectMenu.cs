@@ -58,6 +58,7 @@ public class LevelSelectMenu : MonoBehaviour
 
     public void Refresh()
     {
+        // display levels
         totalPage = totalLevel / pageItem;
         int index = page * pageItem;
         for (int i = 0; i < levelButtons.Length; i++)
@@ -79,6 +80,7 @@ public class LevelSelectMenu : MonoBehaviour
 
     private void CheckButton()
     {
+        // check the necessity of the next page button/ previous page button
         backButton.SetActive(page>0);
         nextButton.SetActive(page<totalPage && totalLevel > 9);
     }

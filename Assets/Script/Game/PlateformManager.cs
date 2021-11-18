@@ -35,6 +35,7 @@ public class PlateformManager : MonoBehaviour
 
     private void Update()
     {
+        // different movements in all scenes
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Map_3"))
         {
             if (active)
@@ -59,6 +60,7 @@ public class PlateformManager : MonoBehaviour
 
     public void Translation(GameObject[] mvt, string orientation) 
     {
+        // function that can manage the movement
         foreach (var Obj in mvt)
         {
             switch (orientation)

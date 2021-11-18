@@ -48,6 +48,7 @@ public class ParticleManager : MonoBehaviour
 
     public void LoadParticles(ParticleSystem[] particle)
     {
+        // activate all particles
         for (int i = 0; i < particle.Length; i++)
         {
             particle[i].gameObject.SetActive(true);
@@ -57,6 +58,7 @@ public class ParticleManager : MonoBehaviour
 
     public void StyleParticle(ParticleSystem[] particle)
     {
+        // function that can setup the particle
         for (int i = 0; i < particle.Length; i++)
         {
             ParticleSystem.MainModule particleMain = particle[i].main;

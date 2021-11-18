@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class ScoreManager : MonoBehaviour
 {
-    private GameManager m_Game;
     public int Value { get; private set; }
     
     private string SCORE;
@@ -19,7 +18,6 @@ public class ScoreManager : MonoBehaviour
 
     private void Awake()
     {
-        m_Game = GameManager.Instance;
         SCORE = "bestscore_" + SceneManager.GetActiveScene().name;
     }
 

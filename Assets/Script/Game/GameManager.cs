@@ -55,6 +55,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        // Control In game else movement
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             PauseGame();
@@ -123,7 +124,8 @@ public class GameManager : MonoBehaviour
     }
 
     public void WinGame()
-    {
+    { 
+        // allows to manage the victory interface, nevertheless this one is not yet used
         Playing = false;
         Timer.SubmitTime(Timer.m_TimeLeft);
         Debug.Log(Timer.m_TimeLeft);

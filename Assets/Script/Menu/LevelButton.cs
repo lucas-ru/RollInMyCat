@@ -24,6 +24,7 @@ public class LevelButton : MonoBehaviour
 
     public void Setup(int Listlevel, bool isUnlock,int score)
     {
+        // allows you to lock levels
         this.Listlevel = Listlevel;
         levelText.text = "level " + Listlevel + "\n" + score + "/10";
         if (isUnlock)
@@ -43,6 +44,7 @@ public class LevelButton : MonoBehaviour
 
     public void Onclick()
     {
+        // redirects to the right level
         menu.StartLevel(Listlevel);
     }
 }
